@@ -1,0 +1,29 @@
+{
+  "name": "api",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "tsc && nodemon ./dist/server"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Rauatorres/projeto-pizzaria-ts-api.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Rauatorres/projeto-pizzaria-ts-api/issues"
+  },
+  "homepage": "https://github.com/Rauatorres/projeto-pizzaria-ts-api#readme",
+  "dependencies": {
+    "@prisma/client": "^6.7.0",
+    "@types/node": "^22.15.14",
+    "fastify": "^5.3.2",
+    "tsx": "^4.19.4"
+  },
+  "devDependencies": {
+    "prisma": "^6.7.0"
+  }
+}

@@ -1,0 +1,65 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+  output   = "../generated/prisma"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model Usuario{
+  id Int @id @default(autoincrement())
+  nome String
+  senha String
+  email String @unique
+}
+
+model Pedido{
+  id Int @id @default(autoincrement())
+  nomeCliente String
+  telefone Int
+  cidade String
+  endereco String
+  criadoEm DateTime
+  observacoes String?
+  pizzasPedidas PizzaPedida[]
+  valorTotal Float
+}
+
+model TipoPizza{
+  id Int @id @default(autoincrement())
+  nome String
+  somaPreco Float
+  pizzasPedidas PizzaPedida[]
+}
+
+model PizzaPedida{
+  id Int @id @default(autoincrement())
+  pedido Pedido @relation(fields: [pedidoId], references: [id])
+  pedidoId Int
+  tipo TipoPizza @relation(fields: [tipoId], references: [id])
+  tipoId Int
+  saboresPedidos SaborPedido[]
+  valor Float
+}
+
+model Sabor{
+  id Int @id @default(autoincrement())
+  nome String
+  ingredientes String
+  precoBase Float
+  saboresPedidos SaborPedido[]
+}
+
+model SaborPedido{
+  id Int @id @default(autoincrement())
+  sabor Sabor @relation(fields: [saborId], references: [id])
+  saborId Int
+  pizzaPedida PizzaPedida @relation(fields: [pizzaPedidaId], references: [id])
+  pizzaPedidaId Int
+}
+
